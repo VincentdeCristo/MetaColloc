@@ -23,6 +23,8 @@ MetaColloc changes this. We propose to completely decouple "Basis Discovery" and
 
 ## ⚙️ How it Works
 
+<img width="1298" height="726" alt="image" src="https://github.com/user-attachments/assets/fc6f3d56-f372-4cfd-8e93-37c861fa13ff" />
+
 1. Dual-Branch Architecture: Our network structure cleverly combines the "low-frequency raw coordinate branch" that processes smooth macroscopic signals and the "multi-scale Fourier Features (high-frequency branch)" that captures violent oscillations.
 2. Collocation Matrix Assembly: When faced with a new domain, just randomly scatter points (Collocation points) and use forward-mode AutoDiff to extract $\Phi_x, \Phi_{xx}, ...$, and you can instantly assemble the linear equation system $A w = b$ and solve for the coefficient $w$.
 
