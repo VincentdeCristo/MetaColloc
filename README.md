@@ -12,6 +12,24 @@
 
 This repository contains the official implementation of MetaColloc, an Optimization-Free PDE Solver via Meta-Learned Basis Functions.
 
+## 💡 What is MetaColloc?
+
+Traditional physical information neural networks (PINNs) usually regard the solution of partial differential equations (PDE) as an instance-specific optimization problem. This means that for every new equation or boundary condition, thousands of steps of time-consuming gradient descent need to be performed from scratch.
+
+MetaColloc changes this. We propose to completely decouple "Basis Discovery" and "PDE Solving":
+
+1. Offline Meta-Training: We offline train a two-branch neural network on multi-scale Gaussian random fields (GRF) to build a highly expressive universal neural basis dictionary.
+2. Online Test-Time Solving: While testing, network parameters are completely frozen. Solving the new PDE becomes a pure closed-form linear algebra operation (for linear PDEs) or a fast Newton-Raphson iteration (for nonlinear PDEs).
+
+## ⚙️ How it Works
+
+1. Dual-Branch Architecture: Our network structure cleverly combines the "low-frequency raw coordinate branch" that processes smooth macroscopic signals and the "multi-scale Fourier Features (high-frequency branch)" that captures violent oscillations.
+2. Collocation Matrix Assembly: When faced with a new domain, just randomly scatter points (Collocation points) and use forward-mode AutoDiff to extract $\Phi_x, \Phi_{xx}, ...$, and you can instantly assemble the linear equation system $A w = b$ and solve for the coefficient $w$.
+
+## 📄 License
+
+This project is licensed under the [Apache-2.0 License](https://github.com/VincentdeCristo/MetaColloc/blob/main/LICENSE).
+
 ## 📰 News
 
 - **[5/22/2026]** Code and experiments released
